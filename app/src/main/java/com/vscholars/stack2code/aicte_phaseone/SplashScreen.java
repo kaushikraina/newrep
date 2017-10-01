@@ -23,6 +23,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.firebase.iid.FirebaseInstanceId;
 import com.vscholars.stack2code.aicte_phaseone.DataItems.DashboardDataItems;
 
 import org.json.JSONArray;
@@ -143,6 +144,10 @@ public class SplashScreen extends AppCompatActivity{
                 SharedPreferences sharedPreferences=getSharedPreferences("cache", Context.MODE_PRIVATE);
                 jsonClasses executer=new jsonClasses("notification");
                 String[] params = {sharedPreferences.getString("email",null),sharedPreferences.getString("firebaseToken",null)};
+
+                String refreshedToken = " "+ FirebaseInstanceId.getInstance().getToken();
+                Log.e(" ", "SplashToken: " + refreshedToken);
+
                 executer.J_Notification.execute(params);
                 SplashScreen.this.finish();
                 String[] defaultValues={"[\"2016-2017\"]","[\"1\"]","[\"1\"]","[\"1\"]","[\"1\"]","[\"1\"]","[\"1\"]"};
